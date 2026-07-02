@@ -69,3 +69,6 @@ golden/
 /HANDOFF_*.md
 /altair_chips.md
 /cdp1869_signal_map.md
+
+# ==== Framework MiSTer (boilerplate upstream; el usuario lo copia de Template_MiSTer) ====
+mister/sys/

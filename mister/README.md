@@ -17,7 +17,9 @@ Core MiSTer del arcade **Destroyer** (EFO/Cidelsa, 1980): CPU **CDP1802** + VIS
   `ce_cpu`=3.579 MHz, `ce_pix`=5.626 MHz (relojes REALES del manual de servicio).
   Fmax del core ≈ 34 MHz → 30 MHz cierra timing (+3.9 ns).
 - `Destroyer.qsf/.sdc/.qpf` + `files.qip` — proyecto Quartus (top `sys_top`, DE10-Nano
-  `5CSEBA6U23I7`, revisión **Destroyer**). `sys/` = framework Template_MiSTer.
+  `5CSEBA6U23I7`, revisión **Destroyer**). `sys/` = framework Template_MiSTer
+  (**NO incluido en el repo**: cópialo aquí desde
+  https://github.com/MiSTer-devel/Template_MiSTer antes de compilar).
 - `Destroyer (Cidelsa, 1980).mra` — empaquetado de la ROM (`destryer.zip` de MAME): 4×2KB → índice 0. `<rbf>destroyer</rbf>`.
 - `build_id.v` — stub (en el flujo completo lo regenera `sys/build_id.tcl`).
 

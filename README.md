@@ -20,12 +20,14 @@ the CPU is validated (OUT stream identical to MAME). Being tested on real MiSTer
 | Path | What |
 |------|------|
 | [`rtl/`](rtl/) | The core: CDP1802 CPU, `vis_*` video, sound, machine wiring (Destroyer/Altair/Draco) |
-| [`mister/`](mister/) | MiSTer project — top `Destroyer.sv`, Quartus files, `sys/` framework, `.mra`, deploy |
+| [`mister/`](mister/) | MiSTer project — top `Destroyer.sv`, Quartus files, `files.qip`, PLL, `.mra`, deploy |
 
 ## Build
 
-Open the Quartus project in [`mister/`](mister/) (Destroyer revision, DE10-Nano) and compile,
-or see [`mister/README.md`](mister/README.md) for details.
+The MiSTer framework (`sys/`) is **not included** — it is upstream boilerplate. Before building,
+drop the `sys/` folder from **[MiSTer-devel/Template_MiSTer](https://github.com/MiSTer-devel/Template_MiSTer)**
+into [`mister/`](mister/), then open the Quartus project (Destroyer revision, DE10-Nano) and compile.
+See [`mister/README.md`](mister/README.md) for details.
 
 ## Acknowledgements
 

@@ -1,0 +1,35 @@
+# ============================================================================
+#  cidelsa_destroyer.qsf — Quartus settings (DE10-Nano / Cyclone V 5CSEBA6U23I7)
+#  Proyecto de SÍNTESIS del core Cidelsa Destroyer (sanity: sintetiza/cabe/timing).
+# ============================================================================
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CSEBA6U23I7
+set_global_assignment -name TOP_LEVEL_ENTITY cidelsa_destroyer_top
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 17.0
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+
+# --- el .hex de la ROM se busca relativo a este directorio de proyecto ---
+set_global_assignment -name SEARCH_PATH "."
+
+# --- RTL del core ---
+set_global_assignment -name VERILOG_FILE cidelsa_destroyer_top.v
+set_global_assignment -name VERILOG_FILE ../rtl/cidelsa_machine.v
+set_global_assignment -name VERILOG_FILE ../rtl/cpu/cdp1802_jl.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_video.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_video_timing.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_vram.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_palette.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_regs.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_sound.v
+
+# --- timing ---
+set_global_assignment -name SDC_FILE cidelsa_destroyer.sdc
+
+# --- opciones de síntesis ---
+set_global_assignment -name VERILOG_INPUT_VERSION VERILOG_2001
+set_global_assignment -name OPTIMIZATION_MODE BALANCED
+set_global_assignment -name ALLOW_ANY_RAM_SIZE_FOR_RECOGNITION ON
+set_global_assignment -name ALLOW_ANY_ROM_SIZE_FOR_RECOGNITION ON
+
+# --- reloj de entrada ---
+set_location_assignment PIN_V11 -to FPGA_CLK1_50

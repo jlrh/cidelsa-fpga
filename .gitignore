@@ -1,0 +1,60 @@
+# ==== Artefactos de Quartus (no son fuente) ====
+db/
+incremental_db/
+output_files/
+hc_output/
+greybox_tmp/
+timing/
+*.qws
+*.rpt
+*.summary
+*.smsg
+*.jdi
+*.pin
+*.sof
+*.pof
+*.sld
+*.done
+*.qarlog
+*.bak
+*.orig
+c5_pin_model_dump.txt
+
+# ==== Artefactos de simulación (Verilator / iverilog) ====
+sim/**/obj_*/
+sim/**/obj_dir/
+**/obj_dir/
+*.o
+*.vvp
+*.vcd
+*.fst
+
+# ==== Logs y ficheros generados ====
+*.log
+mister/build_id.v
+
+# ==== Editor / local ====
+.claude/
+*.swp
+Thumbs.db
+.DS_Store
+
+# ==== COPYRIGHT: ROMs del juego (NUNCA se suben) ====
+*.hex
+*.rom
+*.bin
+*.zip
+roms/
+
+# ==== COPYRIGHT: documentación del fabricante ====
+*.pdf
+
+# ==== Terceros: fuentes de MAME usadas como referencia (no redistribuir) ====
+reference/
+
+# ==== Debug: capturas y trazas del juego (se conservan .lua/.py/.md del oráculo) ====
+debug/**/*.png
+debug/**/*.ppm
+debug/**/*.txt
+nvram/
+golden/

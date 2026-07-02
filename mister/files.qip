@@ -1,0 +1,20 @@
+# Fuentes RTL del core Cidelsa "Destroyer" (cargado por 'source files.qip' desde Cidelsa.qsf).
+# Rutas relativas a mister/.
+
+# La ROM de programa (destryer_prog.hex) la inicializa $readmemh en cidelsa_machine
+# (relativo al dir de proyecto). En HW la sobreescribe el HPS por ioctl (.mra).
+set_global_assignment -name SEARCH_PATH ../roms
+
+# ---- Top de integración del sistema ----
+set_global_assignment -name VERILOG_FILE ../rtl/cidelsa_machine.v
+
+# ---- CPU CDP1802 ----
+set_global_assignment -name VERILOG_FILE ../rtl/cpu/cdp1802_jl.v
+
+# ---- VIS CDP1869/1870 (vídeo sintetizable + memorias + registros + sonido) ----
+set_global_assignment -name VERILOG_FILE ../rtl/vis_video.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_video_timing.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_vram.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_palette.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_regs.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_sound.v

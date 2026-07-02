@@ -1,0 +1,4 @@
+QUARTUS_VERSION = "17.0"
+
+# Cidelsa "Destroyer" — core MiSTer (DE10-Nano / Cyclone V)
+PROJECT_REVISION = "Destroyer"

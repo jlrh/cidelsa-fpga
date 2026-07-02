@@ -24,8 +24,8 @@ USER = os.getenv("MISTER_USER", "root")
 PW = os.getenv("MISTER_PW", "1")   # default de MiSTer; NO hardcodear otro aqui
 
 BASE = os.path.dirname(os.path.abspath(__file__))
-RBF = os.path.join(BASE, "output_files", "Destroyer.rbf")   # salida de Quartus (revision Destroyer)
-MRA = os.path.join(BASE, MRA_NAME)
+RBF = os.path.join(BASE, "output_files", "Destroyer.rbf")        # salida de Quartus (revision Destroyer)
+MRA = os.path.join(BASE, "..", "releases", MRA_NAME)             # descargable canonico en releases/
 
 FILES = [
     (RBF, f"/media/fat/_Arcade/cores/{CORENAME}_{DATE}.rbf"),

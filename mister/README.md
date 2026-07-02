@@ -20,8 +20,10 @@ Core MiSTer del arcade **Destroyer** (EFO/Cidelsa, 1980): CPU **CDP1802** + VIS
   `5CSEBA6U23I7`, revisión **Destroyer**). `sys/` = framework Template_MiSTer
   (**NO incluido en el repo**: cópialo aquí desde
   https://github.com/MiSTer-devel/Template_MiSTer antes de compilar).
-- `Destroyer (Cidelsa, 1980).mra` — empaquetado de la ROM (`destryer.zip` de MAME): 4×2KB → índice 0. `<rbf>destroyer</rbf>`.
 - `build_id.v` — stub (en el flujo completo lo regenera `sys/build_id.tcl`).
+
+El **`.mra`** (empaquetado de `destryer.zip`, 4×2KB → índice 0, `<rbf>destroyer</rbf>`) y el
+`.rbf` publicado están en [`../releases/`](../releases/).
 
 ## Compilar (genera el .rbf)
 ```sh
@@ -32,8 +34,8 @@ quartus_sh --flow compile Destroyer       # ~1 h en Lite; produce output_files/D
 > (Gaelco WRally) para esta misma placa.
 
 ## Desplegar en MiSTer
-1. Copiar `output_files/Destroyer.rbf` → `/media/fat/_Arcade/cores/destroyer_YYYYMMDD.rbf` (nomenclatura estándar).
-2. Copiar `Destroyer (Cidelsa, 1980).mra` → `/media/fat/_Arcade/`.
+1. Copiar `../releases/destroyer_YYYYMMDD.rbf` → `/media/fat/_Arcade/cores/`.
+2. Copiar `../releases/Destroyer (Cidelsa, 1980).mra` → `/media/fat/_Arcade/`.
 
    (o simplemente `python deploy_destroyer.py`, que ya aplica estos nombres)
 3. Poner `destryer.zip` (MAME) en `/media/fat/games/mame/`.

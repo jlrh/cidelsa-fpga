@@ -12,15 +12,23 @@ sharing the common RTL in [`rtl/`](rtl/)) also includes **Altair** and **Draco**
 
 ## Status
 
-Work in progress. Video is pixel-perfect against MAME (0.00% on the validated scenes) and
-the CPU is validated (OUT stream identical to MAME). Being tested on real MiSTer hardware.
+**Destroyer** is validated on real MiSTer hardware (playable). Video is pixel-perfect against MAME
+(0.00% on the validated scenes) and the CPU is validated (OUT stream identical to MAME).
+Altair and Draco are planned.
+
+## Install (MiSTer)
+
+From [`releases/`](releases/), copy `destroyer_YYYYMMDD.rbf` to `_Arcade/cores/` and
+`Destroyer (Cidelsa, 1980).mra` to `_Arcade/`. Provide your own `destryer.zip` in
+`games/mame/`. The `.mra` loads the ROM into the core at runtime.
 
 ## Layout
 
 | Path | What |
 |------|------|
+| [`releases/`](releases/) | **Prebuilt `.rbf` + `.mra`** — what you download and copy to the SD |
 | [`rtl/`](rtl/) | The core: CDP1802 CPU, `vis_*` video, sound, machine wiring (Destroyer/Altair/Draco) |
-| [`mister/`](mister/) | MiSTer project — top `Destroyer.sv`, Quartus files, `files.qip`, PLL, `.mra`, deploy |
+| [`mister/`](mister/) | MiSTer project — top `Destroyer.sv`, Quartus files, `files.qip`, PLL, deploy |
 
 ## Build
 

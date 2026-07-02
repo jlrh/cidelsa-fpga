@@ -58,3 +58,14 @@ debug/**/*.ppm
 debug/**/*.txt
 nvram/
 golden/
+
+# ==== Solo se publica el CORE (rtl/ + mister/); el resto queda en local ====
+/quartus/
+/sim/
+/debug/
+/tools/
+/cfg/
+/docs/
+/HANDOFF_*.md
+/altair_chips.md
+/cdp1869_signal_map.md

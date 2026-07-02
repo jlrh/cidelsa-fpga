@@ -1,4 +1,0 @@
-QUARTUS_VERSION = "17.0"
-
-# Cidelsa Destroyer — proyecto de síntesis (DE10-Nano / Cyclone V)
-PROJECT_REVISION = "cidelsa_destroyer"

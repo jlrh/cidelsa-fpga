@@ -20,11 +20,7 @@ the CPU is validated (OUT stream identical to MAME). Being tested on real MiSTer
 | Path | What |
 |------|------|
 | [`rtl/`](rtl/) | The core: CDP1802 CPU, `vis_*` video, sound, machine wiring (Destroyer/Altair/Draco) |
-| [`mister/`](mister/) | MiSTer project — top `Destroyer.sv`, Quartus files, `sys/` framework, `.mra` |
-| [`quartus/`](quartus/) | Standalone Quartus project |
-| [`sim/`](sim/) | Verilator testbenches |
-| [`docs/`](docs/) | Architecture, methodology and per-block notes |
-| [`debug/`](debug/) | Comparison tooling + MAME oracle scripts |
+| [`mister/`](mister/) | MiSTer project — top `Destroyer.sv`, Quartus files, `sys/` framework, `.mra`, deploy |
 
 ## Build
 

@@ -24,9 +24,12 @@ the CPU is validated (OUT stream identical to MAME). Being tested on real MiSTer
 
 ## Build
 
-The MiSTer framework (`sys/`) is **not included** — it is upstream boilerplate. Before building,
-drop the `sys/` folder from **[MiSTer-devel/Template_MiSTer](https://github.com/MiSTer-devel/Template_MiSTer)**
-into [`mister/`](mister/), then open the Quartus project (Destroyer revision, DE10-Nano) and compile.
+Two upstream pieces are **not bundled** — fetch them in before building:
+
+- **`mister/sys/`** — the MiSTer framework, from [MiSTer-devel/Template_MiSTer](https://github.com/MiSTer-devel/Template_MiSTer).
+- **`rtl/jt49/`** — the JT49 (AY-3-8910) core, from [jotego/jt49](https://github.com/jotego/jt49). Only needed for the **Draco** variant; the Destroyer build does not use it.
+
+Then open the Quartus project in [`mister/`](mister/) (Destroyer revision, DE10-Nano) and compile.
 See [`mister/README.md`](mister/README.md) for details.
 
 ## Acknowledgements

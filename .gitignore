@@ -72,3 +72,6 @@ golden/
 
 # ==== Framework MiSTer (boilerplate upstream; el usuario lo copia de Template_MiSTer) ====
 mister/sys/
+
+# ==== jt49 (AY-3-8910 de jotego): upstream, el usuario lo copia de github.com/jotego/jt49 ====
+rtl/jt49/

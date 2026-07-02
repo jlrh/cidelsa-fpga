@@ -18,7 +18,7 @@ Core MiSTer del arcade **Destroyer** (EFO/Cidelsa, 1980): CPU **CDP1802** + VIS
   Fmax del core ≈ 34 MHz → 30 MHz cierra timing (+3.9 ns).
 - `Destroyer.qsf/.sdc/.qpf` + `files.qip` — proyecto Quartus (top `sys_top`, DE10-Nano
   `5CSEBA6U23I7`, revisión **Destroyer**). `sys/` = framework Template_MiSTer.
-- `Destroyer.mra` — empaquetado de la ROM (`destryer.zip` de MAME): 4×2KB → índice 0.
+- `Destroyer (Cidelsa, 1980).mra` — empaquetado de la ROM (`destryer.zip` de MAME): 4×2KB → índice 0. `<rbf>destroyer</rbf>`.
 - `build_id.v` — stub (en el flujo completo lo regenera `sys/build_id.tcl`).
 
 ## Compilar (genera el .rbf)
@@ -30,8 +30,10 @@ quartus_sh --flow compile Destroyer       # ~1 h en Lite; produce output_files/D
 > (Gaelco WRally) para esta misma placa.
 
 ## Desplegar en MiSTer
-1. Copiar `output_files/Destroyer.rbf` → `/media/fat/_Arcade/cores/`.
-2. Copiar `Destroyer.mra` → `/media/fat/_Arcade/`.
+1. Copiar `output_files/Destroyer.rbf` → `/media/fat/_Arcade/cores/destroyer_YYYYMMDD.rbf` (nomenclatura estándar).
+2. Copiar `Destroyer (Cidelsa, 1980).mra` → `/media/fat/_Arcade/`.
+
+   (o simplemente `python deploy_destroyer.py`, que ya aplica estos nombres)
 3. Poner `destryer.zip` (MAME) en `/media/fat/games/mame/`.
 4. El `.mra` carga la ROM al core por HPS (ioctl índice 0).
 

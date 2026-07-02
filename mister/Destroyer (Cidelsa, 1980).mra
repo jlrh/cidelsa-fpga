@@ -1,8 +1,8 @@
 <misterromdescription>
 	<about author="cidelsa-fpga"/>
-	<name>Destroyer (Cidelsa)</name>
+	<name>Destroyer (Cidelsa, 1980)</name>
 	<setname>destryer</setname>
-	<rbf>Destroyer</rbf>
+	<rbf>destroyer</rbf>
 	<manufacturer>Cidelsa</manufacturer>
 	<year>1980</year>
 	<category>Shooter</category>

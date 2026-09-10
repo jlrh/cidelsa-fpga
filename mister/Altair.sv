@@ -28,7 +28,7 @@ assign VIDEO_ARY = (!ar) ? (status[2] ? 12'd3 : 12'd4) : 12'd0;
 
 `include "build_id.v"
 localparam CONF_STR = {
-	"Destroyer;;",
+	"Altair;;",
 	"-;",
 	"O[122:121],Aspect ratio,Original,Full Screen,[ARC1],[ARC2];",
 	"O[2],Orientation,Vertical,Horizontal;",
@@ -40,8 +40,8 @@ localparam CONF_STR = {
 	"T[0],Reset;",
 	"R[0],Reset and close OSD;",
 	"-;",
-	"J1,Fire,Start 1P,Start 2P,Coin;",
-	"jn,A,Start,Select,R;",
+	"J1,Fire,Fire 2,Start 1P,Start 2P,Coin;",
+	"jn,A,B,Start,Select,R;",
 	"V,v",`BUILD_DATE
 };
 
@@ -102,39 +102,45 @@ wire [7:0] in0 = ~{ 1'b0,
                     joystick_0[4],
                     joystick_0[1],
                     joystick_0[0],
+                    joystick_0[7],
                     joystick_0[6],
-                    joystick_0[5],
                     1'b0 };
+
+wire [7:0] in2 = ~{ 5'b0,
+                    joystick_0[5],
+                    joystick_0[2],
+                    joystick_0[3] };
 
 reg [7:0] sw[8];
 always @(posedge clk) if (ioctl_wr && (ioctl_index == 8'd254) && !ioctl_addr[24:3]) sw[ioctl_addr[2:0]] <= ioctl_dout;
 wire [7:0] in1 = sw[0];
 
 wire coin1_clean, coin2_clean;
-coin_debounce u_coin1 (.clk(clk), .raw(joystick_0[7]), .clean(coin1_clean));
-coin_debounce u_coin2 (.clk(clk), .raw(joystick_1[7]), .clean(coin2_clean));
+coin_debounce u_coin1 (.clk(clk), .raw(joystick_0[8]), .clean(coin1_clean));
+coin_debounce u_coin2 (.clk(clk), .raw(joystick_1[8]), .clean(coin2_clean));
 wire [3:0] ef_ext = { coin1_clean, coin2_clean, 1'b0, 1'b0 };
 
 wire        rom_dl   = ioctl_download && (ioctl_index == 8'd0);
 wire        rom_we   = rom_dl && ioctl_wr;
-wire [12:0] rom_addr = ioctl_addr[12:0];
+wire [13:0] rom_addr = ioctl_addr[13:0];
 
 wire [8:0] hcount, vcount;
 wire       hsync, vsync, de;
 wire [7:0] r, g, b;
 wire signed [15:0] audio;
 
-cidelsa_machine u_core
+altair_machine u_core
 (
 	.clk(clk), .ce_cpu(ce_cpu), .ce_pix(ce_pix), .reset(reset), .flip(native_flip),
-	.in0(in0), .in1(in1), .ef_ext(ef_ext),
+	.in0(in0), .in1(in1), .in2(in2), .ef_ext(ef_ext),
 	.ioctl_rom_we(rom_we), .ioctl_rom_addr(rom_addr), .ioctl_rom_data(ioctl_dout),
 	.q_out(),
 	.hcount(hcount), .vcount(vcount), .hsync(hsync), .vsync(vsync), .de(de),
 	.r(r), .g(g), .b(b),
 	.audio(audio),
 	.io_active(), .io_is_out(), .io_port(), .io_data(), .io_addr(),
-	.dbg_pc(), .dbg_fetch(), .dbg_rb(), .dbg_cfg(), .dbg_hma()
+	.dbg_pc(), .dbg_fetch(), .dbg_rb(), .dbg_cfg(), .dbg_hma(),
+	.dbg_state(), .dbg_op(), .dbg_r1(), .dbg_p(), .dbg_x(), .dbg_d_out()
 );
 
 wire hblank = ~((hcount >= 9'd30) && (hcount < 9'd324));

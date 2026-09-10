@@ -51,3 +51,15 @@ See [`mister/README.md`](mister/README.md) for details.
 ## License
 
 Released under the **GNU General Public License v3.0** — see [`LICENSE`](LICENSE).
+
+<!-- omf_release:dependencias:destroyer -->
+## Dependencias externas de `destroyer`
+
+Este repositorio contiene **solo el código de los cores**. Para compilar `destroyer`
+hacen falta estas piezas, que se distribuyen desde su propio origen:
+
+| Qué | De dónde | Dónde va |
+|---|---|---|
+| sys — framework MiSTer (no se publica, ver mister/README.md) | [https://github.com/MiSTer-devel/Template_MiSTer](https://github.com/MiSTer-devel/Template_MiSTer) | `mister/sys/` |
+| jt49 — solo para la variante Draco | [https://github.com/jotego/jt49](https://github.com/jotego/jt49) | `rtl/jt49/` |
+<!-- /omf_release:dependencias:destroyer -->

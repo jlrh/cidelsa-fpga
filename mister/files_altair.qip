@@ -1,6 +1,6 @@
 set_global_assignment -name SEARCH_PATH ../roms
 
-set_global_assignment -name VERILOG_FILE ../rtl/cidelsa_machine.v
+set_global_assignment -name VERILOG_FILE ../rtl/altair_machine.v
 
 set_global_assignment -name VERILOG_FILE ../rtl/cpu/cdp1802_jl.v
 

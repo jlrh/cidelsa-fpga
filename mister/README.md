@@ -4,11 +4,11 @@ Core MiSTer del arcade **Destroyer** (EFO/Cidelsa, 1980): CPU **CDP1802** + VIS
 **CDP1869/1870**, todo en BRAM (sin SDRAM). Vídeo pixel-perfect validado contra MAME
 (replay 0.00%) y CPU validada (2635 OUTs idénticas a MAME).
 
-> **Filosofía de 3 cores separados.** Cada juego del VIDEO SYSTEM-1 es un core MiSTer
-> independiente (una "placa"): **Destroyer** (este), **Altair** y **Draco**. Comparten el
-> RTL común en `../rtl/` (CPU 1802, `vis_*`) pero cada uno es su propio proyecto/`.rbf`.
-> Altair reutiliza `cidelsa_machine` (mismo mapa, otra ROM y reloj de CPU); Draco usa
-> `draco_machine` (mapa distinto + sonido COP402/AY).
+> **Filosofía de cores separados.** Cada juego del VIDEO SYSTEM-1 es un core MiSTer
+> independiente (una "placa"): **Destroyer** (este), **Altair**, **Altair II** y **Draco**.
+> Comparten el RTL común en `../rtl/` (CPU 1802, `vis_*`) pero cada uno es su propio
+> proyecto/`.rbf`, salvo Altair II, que reutiliza el `.rbf` de Altair (mismo `machine_config`,
+> solo cambia la ROM). Draco usa `draco_machine` (mapa distinto + sonido COP402/AY).
 
 ## Estructura
 - `Destroyer.sv` — módulo `emu` (top del framework). Instancia `../rtl/cidelsa_machine.v`,
@@ -22,8 +22,10 @@ Core MiSTer del arcade **Destroyer** (EFO/Cidelsa, 1980): CPU **CDP1802** + VIS
   https://github.com/MiSTer-devel/Template_MiSTer antes de compilar).
 - `build_id.v` — stub (en el flujo completo lo regenera `sys/build_id.tcl`).
 
-El **`.mra`** (empaquetado de `destryer.zip`, 4×2KB → índice 0, `<rbf>destroyer</rbf>`) y el
-`.rbf` publicado están en [`../releases/`](../releases/).
+El **`.mra`** (empaquetado de `destryer.zip`, 4×2KB → índice 0, `<rbf>ffdestroyer</rbf>`) y el
+`.rbf` publicado están en [`../releases/`](../releases/). El `.rbf` distribuido lleva el
+prefijo `ff` (`ffdestroyer_YYYYMMDD.rbf`) para no colisionar con cores de otros autores que
+comparta nombre base en la SD de MiSTer (el downloader casa `<rbf>` por prefijo).
 
 ## Compilar (genera el .rbf)
 ```sh
@@ -34,8 +36,8 @@ quartus_sh --flow compile Destroyer       # ~1 h en Lite; produce output_files/D
 > (Gaelco WRally) para esta misma placa.
 
 ## Desplegar en MiSTer
-1. Copiar `../releases/destroyer_YYYYMMDD.rbf` → `/media/fat/_Arcade/cores/`.
-2. Copiar `../releases/Destroyer (Cidelsa, 1980).mra` → `/media/fat/_Arcade/`.
+1. Copiar `../releases/ffdestroyer_YYYYMMDD.rbf` → `/media/fat/_Arcade/cores/`.
+2. Copiar `../releases/Destroyer (FF, Cidelsa, 1980).mra` → `/media/fat/_Arcade/`.
 
    (o simplemente `python deploy_destroyer.py`, que ya aplica estos nombres)
 3. Poner `destryer.zip` (MAME) en `/media/fat/games/mame/`.

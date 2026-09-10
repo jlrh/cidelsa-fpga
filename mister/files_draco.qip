@@ -1,0 +1,24 @@
+set_global_assignment -name SEARCH_PATH ../roms
+
+set_global_assignment -name VERILOG_FILE ../rtl/draco_machine.v
+set_global_assignment -name VERILOG_FILE ../rtl/draco_sound.v
+
+set_global_assignment -name VERILOG_FILE ../rtl/cpu/cdp1802_jl.v
+set_global_assignment -name VERILOG_FILE ../rtl/cpu/cop402_jl.v
+
+set_global_assignment -name VERILOG_FILE ../rtl/vis_video.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_video_timing.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_vram.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_palette.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_regs.v
+
+set_global_assignment -name VERILOG_FILE ../rtl/coin_debounce.v
+
+set_global_assignment -name VERILOG_FILE ../rtl/jt49/jt49_bus.v
+set_global_assignment -name VERILOG_FILE ../rtl/jt49/jt49.v
+set_global_assignment -name VERILOG_FILE ../rtl/jt49/jt49_cen.v
+set_global_assignment -name VERILOG_FILE ../rtl/jt49/jt49_div.v
+set_global_assignment -name VERILOG_FILE ../rtl/jt49/jt49_eg.v
+set_global_assignment -name VERILOG_FILE ../rtl/jt49/jt49_exp.v
+set_global_assignment -name VERILOG_FILE ../rtl/jt49/jt49_noise.v
+set_global_assignment -name VERILOG_FILE ../rtl/jt49/jt49_dcrm2.v

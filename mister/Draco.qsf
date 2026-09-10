@@ -6,7 +6,8 @@ set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name LAST_QUARTUS_VERSION "17.0.2 Lite Edition"
 
 set_global_assignment -name GENERATE_RBF_FILE ON
-set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files_draco
 set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
 set_global_assignment -name SAVE_DISK_SPACE OFF
 set_global_assignment -name SMART_RECOMPILE ON
@@ -19,7 +20,7 @@ set_global_assignment -name OPTIMIZE_POWER_DURING_FITTING OFF
 
 set_global_assignment -name FINAL_PLACEMENT_OPTIMIZATION AUTOMATICALLY
 set_global_assignment -name FITTER_EFFORT "AUTO FIT"
-set_global_assignment -name OPTIMIZATION_MODE "BALANCED"
+set_global_assignment -name OPTIMIZATION_MODE BALANCED
 set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC OFF
 set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_DUPLICATION OFF
 set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_RETIMING OFF
@@ -27,8 +28,8 @@ set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_RETIMING OFF
 set_global_assignment -name ALLOW_POWER_UP_DONT_CARE ON
 set_global_assignment -name QII_AUTO_PACKED_REGISTERS NORMAL
 set_global_assignment -name ROUTER_LCELL_INSERTION_AND_LOGIC_DUPLICATION ON
-set_global_assignment -name OPTIMIZATION_TECHNIQUE SPEED
-set_global_assignment -name MUX_RESTRUCTURE ON
+set_global_assignment -name OPTIMIZATION_TECHNIQUE BALANCED
+set_global_assignment -name MUX_RESTRUCTURE AUTO
 set_global_assignment -name REMOVE_REDUNDANT_LOGIC_CELLS ON
 set_global_assignment -name AUTO_DELAY_CHAINS_FOR_HIGH_FANOUT_INPUT_PINS ON
 set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC_FOR_AREA OFF
@@ -46,7 +47,25 @@ set_global_assignment -name VERILOG_MACRO "MISTER_FB=1"
 
 source sys/sys.tcl
 source sys/sys_analog.tcl
-source files.qip
+source files_draco.qip
+set_global_assignment -name SEARCH_PATH ../roms
+set_global_assignment -name VERILOG_FILE ../rtl/draco_machine.v
+set_global_assignment -name VERILOG_FILE ../rtl/draco_sound.v
+set_global_assignment -name VERILOG_FILE ../rtl/cpu/cdp1802_jl.v
+set_global_assignment -name VERILOG_FILE ../rtl/cpu/cop402_jl.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_video.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_video_timing.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_vram.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_palette.v
+set_global_assignment -name VERILOG_FILE ../rtl/vis_regs.v
+set_global_assignment -name VERILOG_FILE ../rtl/jt49/jt49_bus.v
+set_global_assignment -name VERILOG_FILE ../rtl/jt49/jt49.v
+set_global_assignment -name VERILOG_FILE ../rtl/jt49/jt49_cen.v
+set_global_assignment -name VERILOG_FILE ../rtl/jt49/jt49_div.v
+set_global_assignment -name VERILOG_FILE ../rtl/jt49/jt49_eg.v
+set_global_assignment -name VERILOG_FILE ../rtl/jt49/jt49_exp.v
+set_global_assignment -name VERILOG_FILE ../rtl/jt49/jt49_noise.v
+set_global_assignment -name VERILOG_FILE ../rtl/jt49/jt49_dcrm2.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 
 set_global_assignment -name PRE_FLOW_SCRIPT_FILE "quartus_sh:sys/build_id.tcl"
@@ -202,9 +221,9 @@ set_global_assignment -name DEVICE 5CSEBA6U23I7
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name CDF_FILE jtag.cdf
 set_global_assignment -name QIP_FILE sys/sys.qip
-set_global_assignment -name SYSTEMVERILOG_FILE Destroyer.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Draco.sv
 set_global_assignment -name QIP_FILE pll.qip
-set_global_assignment -name SDC_FILE Destroyer.sdc
+set_global_assignment -name SDC_FILE Draco.sdc
 
 set_instance_assignment -name FAST_INPUT_REGISTER ON -to SDRAM_DQ[*]
 set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to HDMI_TX_CLK

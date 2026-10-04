@@ -1,65 +1,71 @@
-# Cidelsa — MiSTer FPGA
+# cidelsa-fpga
 
-FPGA implementation (MiSTer) of **Cidelsa's "Video System-1"** arcade hardware — an
-RCA **CDP1802 (COSMAC)** CPU with **CDP1869/1870** video and **AY-3-8910** sound —
-written from scratch in Verilog.
+Cidelsa arcade cores for **MiSTer**. · Cores arcade de **Cidelsa** para **MiSTer**.
 
-First target: **Destroyer (Cidelsa, 1980)**. The platform family (each a separate core
-sharing the common RTL in [`rtl/`](rtl/)) also includes **Altair** and **Draco**.
+<!-- MOSAICO:AUTO -->
 
-> ⚠️ **No ROMs here.** This repository contains only HDL and tooling. You must provide
-> your own ROMs.
+## Vertical
 
-## Status
+<table>
+<tr>
+<td align="center" width="33%"><a href="DETAILS.md#status"><img src="docs/screens/altair.png" alt="Altair"></a><br><b>Altair</b> · 1981</td>
+<td align="center" width="33%"><a href="DETAILS.md#status"><img src="docs/screens/altair2.png" alt="Altair II"></a><br><b>Altair II</b> · 198?</td>
+<td align="center" width="33%"><a href="DETAILS.md#status"><img src="docs/screens/destryer.png" alt="Destroyer"></a><br><b>Destroyer</b> · 1980</td>
+</tr>
+<tr>
+<td align="center" width="33%"><a href="DETAILS.md#status"><img src="docs/screens/draco.png" alt="Draco"></a><br><b>Draco</b> · 1981</td>
+</tr>
+</table>
 
-**Destroyer** is validated on real MiSTer hardware (playable). Video is pixel-perfect against MAME
-(0.00% on the validated scenes) and the CPU is validated (OUT stream identical to MAME).
-Altair and Draco are planned.
+<!-- /MOSAICO:AUTO -->
 
-## Install (MiSTer)
+<!-- INSTALAR:AUTO -->
 
-From [`releases/`](releases/), copy `destroyer_YYYYMMDD.rbf` to `_Arcade/cores/` and
-`Destroyer (Cidelsa, 1980).mra` to `_Arcade/`. Provide your own `destryer.zip` in
-`games/mame/`. The `.mra` loads the ROM into the core at runtime.
+## How to install the Cidelsa cores on your MiSTer FPGA
 
-## Layout
+Two options:
 
-| Path | What |
-|------|------|
-| [`releases/`](releases/) | **Prebuilt `.rbf` + `.mra`** — what you download and copy to the SD |
-| [`rtl/`](rtl/) | The core: CDP1802 CPU, `vis_*` video, sound, machine wiring (Destroyer/Altair/Draco) |
-| [`mister/`](mister/) | MiSTer project — top `Destroyer.sv`, Quartus files, `files.qip`, PLL, deploy |
+1. **Download and copy them yourself.** The `.rbf` cores are in [`releases/`](releases/) and go to `_Arcade/cores/` on
+   the SD card; the `.mra` files are there too and go to `_Arcade/`.
+2. **Let the MiSTer Downloader do it.** Add the [jlrh-misterfpga-db](https://github.com/jlrh/jlrh-misterfpga-db)
+   database to `downloader.ini` (root of the SD card) and run `Scripts → update`. It installs these cores **and the
+   rest of jlrh's arcade cores** (Konami, Gaelco, Seibu, Inder…), and keeps them all up to date.
 
-## Build
+```ini
+[jlrh/jlrh-misterfpga-db]
+db_url = https://raw.githubusercontent.com/jlrh/jlrh-misterfpga-db/db/db.json.zip
+```
 
-Two upstream pieces are **not bundled** — fetch them in before building:
+**ROMs are not included.** Bring your own MAME romsets (merged, MAME 0.288) into `games/mame/`. The exact set each core
+expects is in [`ROMS.md`](https://github.com/jlrh/jlrh-misterfpga-db/blob/main/ROMS.md).
 
-- **`mister/sys/`** — the MiSTer framework, from [MiSTer-devel/Template_MiSTer](https://github.com/MiSTer-devel/Template_MiSTer).
-- **`rtl/jt49/`** — the JT49 (AY-3-8910) core, from [jotego/jt49](https://github.com/jotego/jt49). Only needed for the **Draco** variant; the Destroyer build does not use it.
+**More:** hardware, status, controls and credits of each core in [`DETAILS.md`](DETAILS.md). Screenshots taken from MAME.
 
-Then open the Quartus project in [`mister/`](mister/) (Destroyer revision, DE10-Nano) and compile.
-See [`mister/README.md`](mister/README.md) for details.
+Written from scratch in Verilog on the MiSTer framework ([Template_MiSTer](https://github.com/MiSTer-devel/Template_MiSTer)).
+License: GPLv3 ([`LICENSE`](LICENSE)).
 
-## Acknowledgements
+## Cómo instalar los cores de Cidelsa en tu MiSTer FPGA
 
-- **[Recreativas.org](https://www.recreativas.org/)** — for their work preserving Spanish
-  arcade hardware.
-- **Ferrán Yago** — creator of the game.
-- **The MAME team** — for the emulation used as a golden reference.
-- **Claude** — development assistance.
+Dos opciones:
 
-## License
+1. **Descargarlos y copiarlos tú.** Los `.rbf` están en [`releases/`](releases/) y van a `_Arcade/cores/` en la SD;
+   los `.mra` también están ahí, y van a `_Arcade/`.
+2. **Que lo haga el MiSTer Downloader.** Añade la base de datos
+   [jlrh-misterfpga-db](https://github.com/jlrh/jlrh-misterfpga-db) a `downloader.ini` (en la raíz de la SD) y ejecuta
+   `Scripts → update`. Instala estos cores **y el resto de cores arcade de jlrh** (Konami, Gaelco, Seibu, Inder…), y los
+   mantiene todos al día.
 
-Released under the **GNU General Public License v3.0** — see [`LICENSE`](LICENSE).
+```ini
+[jlrh/jlrh-misterfpga-db]
+db_url = https://raw.githubusercontent.com/jlrh/jlrh-misterfpga-db/db/db.json.zip
+```
 
-<!-- omf_release:dependencias:destroyer -->
-## Dependencias externas de `destroyer`
+**Las ROMs no se incluyen.** Pon tus propios romsets de MAME (merged, MAME 0.288) en `games/mame/`. El set exacto que
+espera cada core está en [`ROMS.md`](https://github.com/jlrh/jlrh-misterfpga-db/blob/main/ROMS.md).
 
-Este repositorio contiene **solo el código de los cores**. Para compilar `destroyer`
-hacen falta estas piezas, que se distribuyen desde su propio origen:
+**Más:** hardware, estado, controles y créditos de cada core, en [`DETAILS.md`](DETAILS.md). Capturas tomadas de MAME.
 
-| Qué | De dónde | Dónde va |
-|---|---|---|
-| sys — framework MiSTer (no se publica, ver mister/README.md) | [https://github.com/MiSTer-devel/Template_MiSTer](https://github.com/MiSTer-devel/Template_MiSTer) | `mister/sys/` |
-| jt49 — solo para la variante Draco | [https://github.com/jotego/jt49](https://github.com/jotego/jt49) | `rtl/jt49/` |
-<!-- /omf_release:dependencias:destroyer -->
+Escritos desde cero en Verilog sobre el framework de MiSTer ([Template_MiSTer](https://github.com/MiSTer-devel/Template_MiSTer)).
+Licencia: GPLv3 ([`LICENSE`](LICENSE)).
+
+<!-- /INSTALAR:AUTO -->
